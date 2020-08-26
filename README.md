@@ -15,7 +15,7 @@ Pomelo Pay
 
 ## Lottie
 
-- This project uses Lottie animation, to make it work on iOS, please `cd ios` and rune `pod install`
+- This project uses Lottie animation, to make it works on iOS, please `cd ios` and run `pod install`
 
 ## How to run
 
