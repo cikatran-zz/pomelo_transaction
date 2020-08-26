@@ -1,5 +1,5 @@
 # Pomelo Test App
-We change the way you bet and bring to you more profit.
+Pomelo Pay
 
 ## Technical
 - Redux
