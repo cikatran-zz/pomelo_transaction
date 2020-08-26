@@ -39,3 +39,4 @@ Pomelo Pay
 ## Run Test
 
 - Simply run `yarn test`
+- For update new Snapshot please run `yarn test -u`
