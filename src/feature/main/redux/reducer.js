@@ -1,3 +1,4 @@
+import {cloneDeep} from 'lodash';
 import * as actionTypes from './actionTypes';
 
 const initialState = {
@@ -11,7 +12,15 @@ export default function mainReducer(state = initialState, action) {
         ...state,
         transaction_list: action.data,
       };
-
+    case actionTypes.REFUND:
+      let currentTransactionList = cloneDeep(state.transaction_list);
+      let currentItemIndex = action.index;
+      let item = currentTransactionList[currentItemIndex];
+      item.isRefunded = true;
+      return {
+        ...state,
+        transaction_list: currentTransactionList,
+      };
     default:
       return state;
   }
