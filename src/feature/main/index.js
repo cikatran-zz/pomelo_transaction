@@ -2,15 +2,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
 import React, {useCallback, useEffect} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components';
+import RefundButton from './element/refund_btn';
 import {fetchTransactionList, refundTransaction} from './redux/action';
 
 export default function MainScreen() {
@@ -49,13 +44,18 @@ export default function MainScreen() {
           <Text style={{fontWeight: 'bold'}}>Security Word: </Text>
           <Text>{item.securityWord}</Text>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           disabled={item.isRefunded}
           onPress={() => handleRefund(index)}>
           <RefundBtn isRefunded={item.isRefunded}>
             <RefundLabel>{item.isRefunded ? 'Refunded' : 'Refund'}</RefundLabel>
           </RefundBtn>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <RefundButton
+          onPress={() => handleRefund(index)}
+          isRefunded={item.isRefunded}
+          disabled={item.isRefunded}
+        />
       </TransactionContainer>
     );
   };
@@ -77,31 +77,11 @@ export default function MainScreen() {
     align-self: center;
   `;
 
-  const RefundBtn = styled.View`
-    width: 200px;
-    height: 30px;
-    border-radius: 14px;
-    background-color: ${(props) => (props.isRefunded ? 'grey' : '#55e8b9')};
-    margin: 5px;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
-  `;
-
-  const RefundLabel = styled.Text`
-    width: 123px;
-    height: 14px;
-    font-size: 14px;
-    text-align: center;
-    font-weight: bold;
-    color: #ffffff;
-  `;
-
   // console.log('transactionList', transactionList);
 
   return (
     <SafeAreaView>
-      <View style={{flexDirection: 'column'}}>
+      <View style={{flexDirection: 'column', height: '100%'}}>
         <TransactionTitle>Transaction List</TransactionTitle>
         <FlatList
           style={{marginHorizontal: 10}}
