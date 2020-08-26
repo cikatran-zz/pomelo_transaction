@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
+import LottieView from 'lottie-react-native';
 import React, {useCallback, useEffect} from 'react';
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,6 +14,8 @@ export default function MainScreen() {
   const transactionList = useSelector(
     (state) => state.mainReducer.transaction_list,
   );
+
+  const isLoading = useSelector((state) => state.mainReducer.isLoading);
 
   useEffect(() => {
     dispatch(fetchTransactionList());
@@ -78,11 +81,20 @@ export default function MainScreen() {
   `;
 
   // console.log('transactionList', transactionList);
-
+  const showLoading = () => {
+    return isLoading ? (
+      <LottieView
+        source={require('../../../assets/loading.json')}
+        autoPlay
+        loop
+      />
+    ) : null;
+  };
   return (
     <SafeAreaView>
       <View style={{flexDirection: 'column', height: '100%'}}>
         <TransactionTitle>Transaction List</TransactionTitle>
+        {showLoading()}
         <FlatList
           style={{marginHorizontal: 10}}
           data={transactionList}

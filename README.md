@@ -13,6 +13,10 @@ Pomelo Pay
 - Simply run `npm install` or `yarn` after clone the project.
 - Remember run `npm install` or `yarn` when pull new code.
 
+## Lottie
+
+- This project uses Lottie animation, to make it work on iOS, please `cd ios` and rune `pod install`
+
 ## How to run
 
 - Using VSCode: Please copy below settings to .vscode/launch.json (inside `configurations` tag)
